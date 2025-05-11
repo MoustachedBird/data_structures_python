@@ -1,9 +1,9 @@
 
-from problem1 import anagram
+from problem1 import anagram, anagram2
 import pytest
 
 @pytest.mark.parametrize(
-    argnames="s1,s2",
+    argnames="s1,s2,expected",
     argvalues=[
         ('go go go','gggooo',True),
         ("abc", "cba", True),
@@ -12,5 +12,13 @@ import pytest
         ("123", "12 ",False),
     ]
 )    
-def test_anagram():
-    assert anagram([1, 2, 3, 4, 5]) == 15
+def test__anagram(s1,s2,expected):
+    """
+    Test the anagram function.
+    Args:
+        s1 (str): First string.
+        s2 (str): Second string.
+        expected (bool): Expected result.
+    """
+    assert anagram(s1,s2) == expected
+    assert anagram2(s1,s2) == expected

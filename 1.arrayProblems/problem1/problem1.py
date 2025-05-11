@@ -20,4 +20,43 @@ def anagram(s1,s2) -> bool:
         bool: True if the strings are anagrams, False otherwise.
         
     """ 
-    pass
+    s1 = s1.replace(" ", "").lower()
+    s2 = s2.replace(" ", "").lower()
+
+    return sorted(s1) == sorted(s2)
+
+
+def anagram2(s1,s2) -> bool:
+    """
+    Check if two strings are anagrams of each other.
+    Args:
+        s1 (str): First string.
+        s2 (str): Second string.         
+    Returns:
+        bool: True if the strings are anagrams, False otherwise.
+        
+    """ 
+    s1 = s1.replace(" ", "").lower()
+    s2 = s2.replace(" ", "").lower()
+
+    if len(s1) != len(s2):
+        return False
+    
+    count = {}
+
+    for char in s1:
+        if char in count:
+            count[char] += 1
+        else:
+            count[char] = 1
+
+    for char in s2:
+        if char in count:
+            count[char] -= 1
+        else:
+            return False
+    
+    for char in count:
+        if count[char] != 0:
+            return False
+    return True
